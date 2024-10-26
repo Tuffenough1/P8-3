@@ -4,14 +4,14 @@
 using namespace std;
 
 int valueOfRoman(char r);
-int romanToDecimal(string roman);
+int convertRomanToInt(const string& s);
 
 int main() {
     string romanNumeral;
     cout << "Enter a Roman numeral: ";
     cin >> romanNumeral;
 
-    int result = romanToDecimal(romanNumeral);
+    int result = convertRomanToInt(romanNumeral);
     cout << "Decimal representation: " << result << endl;
 
     return 0;
@@ -30,20 +30,19 @@ int valueOfRoman(char r) {
     }
 }
 
-int romanToDecimal(string roman) {
-    int decimalValue = 0;
-    int length = roman.length();
+int convertRomanToInt(const string& s) {
+    int total = 0;
 
-    for (int i = 0; i < length; i++) {
-        int currentValue = valueOfRoman(roman[i]);
-        int nextValue = (i < length - 1) ? valueOfRoman(roman[i + 1]) : 0;
+    for (size_t i = 0; i < s.length(); i++) {
+        int currentValue = valueOfRoman(s[i]);
+        int nextValue = (i + 1 < s.length()) ? valueOfRoman(s[i + 1]) : 0;
 
         if (currentValue < nextValue) {
-            decimalValue -= currentValue;
+            total -= currentValue;
         }
         else {
-            decimalValue += currentValue;
+            total += currentValue;
         }
     }
-    return decimalValue;
+    return total;
 }
