@@ -8,12 +8,14 @@ int convertRomanToInt(const string& s);
 
 int main() {
     string romanNumeral;
-    cout << "Enter a Roman numeral: ";
-    cin >> romanNumeral;
 
-    int result = convertRomanToInt(romanNumeral);
-    cout << "Decimal representation: " << result << endl;
+    while (true) {
+        cout << "Enter roman number or Q to quit: ";
+        cin >> romanNumeral;
 
+        if (romanNumeral == "Q") break;
+        cout << romanNumeral << " = " << convertRomanToInt(romanNumeral) << endl;
+    }
     return 0;
 }
 
